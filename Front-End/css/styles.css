@@ -11,3 +11,15 @@ body {
 #title {
     font-size: 64px;
 }
+
+a {
+    color: pink;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:visited {
+    color: pink;
+}
