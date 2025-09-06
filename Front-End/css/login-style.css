@@ -6,3 +6,17 @@ body {
     min-height: 100vh;
 }
 
+#login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: blueviolet;
+    height: 10%;
+    width: 20%;
+}
+
+#login-box > h2 {
+    
+}
