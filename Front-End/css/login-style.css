@@ -3,7 +3,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 75vh;
 }
 
 #login-box {
@@ -11,12 +11,18 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 8px;
-    background-color: blueviolet;
+    gap: 10px;
+    background-color: rgb(71, 46, 94);
     height: 10%;
     width: 20%;
 }
 
 #login-box > h2 {
-    
+    font-size: 48px;
+    margin: 0px;
+}
+
+#login-box > input {
+    width: 50%;
+    font-size: larger;
 }
