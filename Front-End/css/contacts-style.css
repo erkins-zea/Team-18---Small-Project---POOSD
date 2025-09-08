@@ -10,5 +10,27 @@ h2 {
 
 .general-actions {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 20px;
+    width: 15%;
+}
+
+.general-actions > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+    border: none;
+    border-radius: 20px;
+    height: 30px;
+}
+
+.general-actions > button:active {
+    background-color: rgb(92, 30, 146);
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
 }
