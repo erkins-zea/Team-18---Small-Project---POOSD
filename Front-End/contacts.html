@@ -6,7 +6,7 @@
         <title>Contacts</title>
         <link rel="stylesheet" href="./css/styles.css">
         <link rel="stylesheet" href="./css/contacts-style.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1&icon_names=logout,person_add,search&display=block">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1&icon_names=edit_square,logout,person_add,person_remove,search&display=block">
     </head>
 
     <body>
@@ -25,5 +25,51 @@
                 <i class="material-symbols-outlined">logout</i>
             </button>
         </div>
+
+        <table>
+            <thead>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>First</td>
+                    <td>Last</td>
+                    <td>FirstLast@something.com</td>
+                    <td>XXX-XXX-XXXX</td>
+                    <td>
+                        <div class="button-container">
+                            <button>
+                                <i class="material-symbols-outlined">edit_square</i>
+                            </button>
+                            <button>
+                                <i class="material-symbols-outlined">person_remove</i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>First</td>
+                    <td>Last</td>
+                    <td>FirstLast@something.com</td>
+                    <td>XXX-XXX-XXXX</td>
+                    <td>
+                        <div class="button-container">
+                            <button>
+                                <i class="material-symbols-outlined">edit_square</i>
+                            </button>
+                            <button>
+                                <i class="material-symbols-outlined">person_remove</i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
