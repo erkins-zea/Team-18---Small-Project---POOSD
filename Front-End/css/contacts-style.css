@@ -38,13 +38,13 @@ button:active {
 .table-wrapper {
     max-height: 800px;
     overflow-y: auto;
+    margin-top: 30px;
 }
 
 table {
     table-layout: fixed;
     background-color: rgb(79, 30, 79);
     max-width: 800px;
-    margin-top: 30px;
 }
 
 th, td {
