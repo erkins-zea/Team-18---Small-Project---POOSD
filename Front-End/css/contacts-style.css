@@ -37,14 +37,23 @@ button:active {
 
 .table-wrapper {
     max-height: 800px;
-    overflow-y: auto;
+    overflow: visible auto;
     margin-top: 30px;
+    padding: 0 20px;
 }
 
 table {
     table-layout: fixed;
     max-width: 800px;
     border-spacing: 0 20px;
+}
+
+tbody tr {
+    transition: 0.3s ease;
+}
+
+tbody tr:hover {
+    transform: scale(1.05);
 }
 
 tr th:first-child, tr td:first-child {
