@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contacts</title>
+        <link rel="stylesheet" href="./css/styles.css">
+        <link rel="stylesheet" href="./css/contacts-style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1&icon_names=autorenew,edit_square,logout,person_add,person_remove,search&display=block">
+    </head>
+
+    <body>
+        <h1 id="title">Contact Manager</h1>
+        <h2 id="welcome-message">Welcome, First Last name!</h2>
+
+        <div class="general-actions">
+            <div class="search-container">
+                <i class="material-symbols-outlined">search</i>
+                <input id="searchText" type="text" name="search" placeholder="Search">
+            </div>
+            <button>
+                <i class="material-symbols-outlined">person_add</i>
+            </button>
+            <button>
+                <i class="material-symbols-outlined">autorenew</i>
+            </button>
+            <button>
+                <i class="material-symbols-outlined">logout</i>
+            </button>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>First</td>
+                        <td>Last</td>
+                        <td>FirstLast@something.com</td>
+                        <td>XXX-XXX-XXXX</td>
+                        <td>
+                            <div class="button-container">
+                                <button>
+                                    <i class="material-symbols-outlined">edit_square</i>
+                                </button>
+                                <button>
+                                    <i class="material-symbols-outlined">person_remove</i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>First</td>
+                        <td>Last</td>
+                        <td>FirstLast@something.com</td>
+                        <td>XXX-XXX-XXXX</td>
+                        <td>
+                            <div class="button-container">
+                                <button>
+                                    <i class="material-symbols-outlined">edit_square</i>
+                                </button>
+                                <button>
+                                    <i class="material-symbols-outlined">person_remove</i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

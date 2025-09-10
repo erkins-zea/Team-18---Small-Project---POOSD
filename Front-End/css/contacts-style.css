@@ -1,0 +1,79 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    margin: 0 0 15px 0;
+}
+
+.general-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 15%;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+    border: none;
+    border-radius: 20px;
+    height: 30px;
+}
+
+button:active {
+    background-color: rgb(92, 30, 146);
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.table-wrapper {
+    max-height: 800px;
+    overflow: visible auto;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+table {
+    table-layout: fixed;
+    max-width: 800px;
+    border-spacing: 0 20px;
+}
+
+tbody tr {
+    transition: 0.3s ease;
+}
+
+tbody tr:hover {
+    transform: scale(1.05);
+}
+
+tr th:first-child, tr td:first-child {
+    border-radius: 20px 0 0 20px;
+}
+
+tr th:last-child, tr td:last-child {
+    border-radius: 0 20px 20px 0;
+}
+
+th, td {
+    background-color: rgb(71, 46, 94);
+    text-align: left;
+    width: 400px;
+    padding:10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+}
