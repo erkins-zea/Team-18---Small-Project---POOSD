@@ -6,7 +6,7 @@ body {
     min-height: 75vh;
 }
 
-#login-box {
+#form-box {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,26 +16,32 @@ body {
     border-radius: 20px;
 }
 
-#login-box > h2 {
+#form-box > h2 {
     font-size: 48px;
     margin: 0px;
 }
 
-#login-box > input {
-    width: 50%;
+.input-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    width: 70%;
+}
+
+.input-form > input {
     font-size: larger;
 }
 
-#login-box > button {
+.input-form > button {
     background-color: blueviolet;
     border: none;
     border-radius: 20px;
     font-size: larger;
-    width: 20%;
     height: 40px;
     margin-bottom: 20px;
 }
 
-#login-box > button:active {
+.input-form > button:active {
     background-color: rgb(43, 13, 70);
 }
