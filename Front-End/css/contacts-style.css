@@ -43,13 +43,23 @@ button:active {
 
 table {
     table-layout: fixed;
-    background-color: rgb(79, 30, 79);
     max-width: 800px;
+    border-spacing: 0 20px;
+}
+
+tr th:first-child, tr td:first-child {
+    border-radius: 20px 0 0 20px;
+}
+
+tr th:last-child, tr td:last-child {
+    border-radius: 0 20px 20px 0;
 }
 
 th, td {
+    background-color: rgb(71, 46, 94);
     text-align: left;
     width: 400px;
+    padding:10px;
 }
 
 .button-container {
