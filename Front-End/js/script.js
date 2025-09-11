@@ -96,3 +96,17 @@ function doLogout() {
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
 }
+
+// This function is probably going to have to be changed quite a bit
+function showTable() {
+    let x = document.getElementById("add-me");
+    let contacts = document.getElementById("contacts-table")
+    if (x.style.display === "none") {
+        x.style.display = "block";
+        contacts.style.display = "none";
+    } 
+    else {
+        x.style.display = "none";
+        contacts.style.display = "block";
+    }
+}
