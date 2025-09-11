@@ -234,7 +234,7 @@ function loadContacts() {
                     text += "<td id='email" + i + "'><span>" + jsonObject.results[i].EmailAddress + "</span></td>";
                     text += "<td id='phone" + i + "'><span>" + jsonObject.results[i].PhoneNumber + "</span></td>";
                     text += "<td>" +
-                    "<button type='button' id='edit-button" + i + "'>" + "<i class='material-symbols-outlined'>edit_square</i> + </button>" +
+                    "<button type='button' id='edit-button" + i + "' onclick='editRow(" + i + ")'>" + "<i class='material-symbols-outlined'>edit_square</i> + </button>" +
                     // TODO: Add save button here
                     "<button type='button' onclick='deleteRow(" + i + ")'>" + "<i class='material-symbols-outlined'>person_remove</i> + </button>";
                     text += "</tr>";
@@ -247,4 +247,24 @@ function loadContacts() {
     } catch (error) {
         console.log(error.message);
     }
+}
+
+function editRow(id) {
+    document.getElementById("edit-button" + id).style.display = "none";
+    // TODO: Switch to save button here
+
+    let firstNameI = document.getElementById("first-name" + id);
+    let lastNameI = document.getElementById("last-name" + id);
+    let email = document.getElementById("email" + id);
+    let phone = document.getElementById("phone" + id);
+
+    let firstNameData = firstNameI.innerText;
+    let lastNameData = lastNameI.innerText;
+    let emailData = email.innerText;
+    let phoneData = phone.innerText;
+
+    firstNameI.innerHTML = "<input type='text' id='first-name-text" + id + "' value='" + firstNameData + "'>";
+    lastNameI.innerHTML = "<input type='text' id='last-name-text" + id + "' value='" + lastNameData + "'>";
+    email.innerHTML = "<input type='text' id='email-text" + id + "' value='" + emailData + "'>";
+    phone.innerHTML = "<input type='text' id='phone-text" + id + "' value='" + phoneData + "'>";
 }
