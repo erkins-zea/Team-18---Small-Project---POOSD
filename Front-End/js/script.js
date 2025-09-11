@@ -268,3 +268,45 @@ function editRow(id) {
     email.innerHTML = "<input type='text' id='email-text" + id + "' value='" + emailData + "'>";
     phone.innerHTML = "<input type='text' id='phone-text" + id + "' value='" + phoneData + "'>";
 }
+
+function saveRow(id) {
+    let firstNameVal = document.getElementById("first-name-text" + id).value;
+    let lastNameVal = document.getElementById("last-name-text" + id).value;
+    let emailVal = document.getElementById("email-text" + id).value;
+    let phoneVal = document.getElementById("phone-text" + id).value;
+    let idVal = ids[id]
+
+    document.getElementById("first-name" + id).innerHTML = firstNameVal;
+    document.getElementById("last-name" + id).innerHTML = lastNameVal;
+    document.getElementById("email" + id).innerHTML = emailVal;
+    document.getElementById("phone" + id).innerHTML = phoneVal;
+
+    document.getElementById("edit-button" + id).style.display = "flex";
+    // TODO: Save button stuff again
+
+    let temp = {
+        phoneNumber: phoneVal,
+        emailAddress: emailVal,
+        newFirstName: firstNameVal,
+        newLastName: lastNameVal,
+        id: idVal
+    };
+
+    let jsonPayload = JSON.stringify(temp);
+    let url = base + "/UpdateContacts." + extension; // Change path if necessary
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = () => {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("Contact has been updated");
+                loadContacts();
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
