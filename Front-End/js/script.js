@@ -110,3 +110,42 @@ function showTable() {
         contacts.style.display = "block";
     }
 }
+
+function addContact() {
+    let firstname = document.getElementById("contact-text-first").value;
+    let lastname = document.getElementById("contact-text-last").value;
+    let phonenumber = document.getElementById("contact-text-number").value;
+    let emailaddress = document.getElementById("contact-text-email").value;
+
+    if (!validAddContact(firstname, lastname, phonenumber, emailaddress)) {
+        console.log("INVALID FIRST NAME, LAST NAME, PHONE, OR EMAIL SUBMITTED");
+        return;
+    }
+
+    let temp = {
+        firstName : firstname,
+        lastName : lastname,
+        phoneNumber : phonenumber,
+        emailAddress : emailaddress,
+        userId : userId,
+    }
+
+    let jsonPayload = JSON.stringify(temp);
+    let url = urlBase + '/AddContacts.' + extension; // Remember to rename if .php filename is different
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true)
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = () => {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("Contact has been added");
+                document.getElementById("add-me").reset(); // Clear form input
+                loadContacts(); // Reload contacts
+                showTable(); // Switch view to show, this whole part might be unnecessary since I may just decide not to hide the table when adding a contact
+            }
+        };
+        xhr.send(jsonPayload)
+    } catch (error) {
+        console.log(error.message);
+    }
+}
