@@ -149,3 +149,48 @@ function addContact() {
         console.log(error.message);
     }
 }
+
+function loadContacts() {
+    let temp = {
+        search : "",
+        userId : userId,
+    };
+
+    let jsonPayload = JSON.stringify(temp);
+
+    let url = urlBase + "/SearchContacts." + extension; // Remember to change yeah yeah yeah
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = () => {
+            if (this.readyState == 4 && this.readyState == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+                if (jsonObject.error) {
+                    console.log(jsonObject.error);
+                    return;
+                }
+
+                let text = "<table border='1'>"
+                for (let i = 0; i < jsonObject.results.length; i++) {
+                    ids[i] = jsonObject.results[i].ID
+                    text += "<tr id='row" + i + "'>"
+                    text += "<td id='first-name" + i + "'><span>" + jsonObject.results[i].FirstName + "</span></td>";
+                    text += "<td id='last-name" + i + "'><span>" + jsonObject.results[i].LastName + "</span></td>";
+                    text += "<td id='email" + i + "'><span>" + jsonObject.results[i].EmailAddress + "</span></td>";
+                    text += "<td id='phone" + i + "'><span>" + jsonObject.results[i].PhoneNumber + "</span></td>";
+                    text += "<td>" +
+                    "<button type='button' id='edit-button" + i + "'>" + "<i class='material-symbols-outlined'>edit_square</i> + </button>" +
+                    // TODO: Add save button here
+                    "<button type='button' onclick='deleteRow(" + i + ")'>" + "<i class='material-symbols-outlined'>person_remove</i> + </button>";
+                    text += "</tr>";
+                }
+                text += "</table>";
+                document.getElementById("tbody").innerHTML = text;
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
