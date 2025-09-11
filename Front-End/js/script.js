@@ -310,3 +310,38 @@ function saveRow(id) {
         console.log(error.message);
     }
 }
+
+function deleteRow(id) {
+    let firstNameVal = document.getElementById("first-name" + id).innerText;
+    let lastNameVal = document.getElementById("last-name" + id).innerText;
+    nameOne = firstNameVal.substring(0, firstNameVal.length);
+    nameTwo = lastNameVal.substring(0, lastNameVal.length);
+    let check = confirm(`Are you sure you want to delete ${nameOne} ${nameTwo}?`);
+
+    if (check) {
+        document.getElementById("row" + id + "").outerHTML = "";
+        let temp = {
+            firstName : nameOne,
+            lastName : nameTwo,
+            userId : userId,
+        };
+
+        let jsonPayload = JSON.stringify(temp);
+        let url = urlBase + '/DeleteContacts.' + extension; // Change or something idk
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        try {
+            xhr.onreadystatechange = () => {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("Contact has been deleted");
+                    loadContacts();
+                }
+            };
+            xhr.send(jsonPayload);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+}
