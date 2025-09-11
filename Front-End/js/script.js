@@ -59,6 +59,60 @@ function doLogin() {
     }
 }
 
+function doSignup() {
+    firstName = document.getElementById("signup-first-name").value;
+    lastName = document.getElementById("signup-last-name").value;
+
+    let username = document.getElementById("signup-user").value;
+    let password = document.getElementById("signup-password").value;
+
+    if (!validSignUpForm(firstName, lastName, username, password)) {
+        document.getElementById("signup-result").innerHTML = "Invalid signup";
+        return;
+    }
+
+    // TODO: Declare md5 hash here
+
+    document.getElementById("signup-result").innerHTML = "";
+
+    let temp = {
+        firstName : firstName,
+        lastName : lastName,
+        login : username,
+        password : password, // Remember to replace with hash
+    };
+
+    let jsonPayload = JSON.stringify(temp)
+    let url = urlBase + "/SignUp." + extension // Replace name sure whatever
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = () => {
+            if (this.readyState != 4)
+                return;
+
+            if (this.status == 409) {
+                document.getElementById("signup-result").innerHTML = "User already exists";
+                return;
+            }
+
+            if (this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+                userId = jsonObject.id;
+                document.getElementById("signup-result").innerHTML = "User added";
+                firstName = jsonObject.firstName;
+                lastName = jsonObject.lastName;
+                saveCookie();
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (error) {
+        document.getElementById("signup-result").innerHTML = error.message;
+    }
+}
+
 function saveCookie() {
     let minutes = 20;
     let date = new Date();
