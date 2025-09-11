@@ -345,3 +345,29 @@ function deleteRow(id) {
         }
     }
 }
+
+function searchContacts() {
+    const content = document.getElementById("search-text");
+    const selections = content.value.toUpperCase().split(' ');
+    const table = document.getElementById("contacts-table");
+    const tr = table.getElementsByTagName("tr");
+
+    for (let i = 0; i < tr.length; i++) {
+        const tdFirstName = tr[i].getElementsByTagName("td")[0];
+        const tdLastName = tr[i].getElementsByTagName("td")[1];
+
+        if (tdFirstName && tdLastName) {
+            const textValueFirstName = tdFirstName.textContent || tdFirstName.innerText;
+            const textValueLastName = tdLastName.textContent || tdLastName.innerText;
+            tr[i].style.display = "none";
+
+            for (const selection of selections) {
+                if (textValueFirstName.toUpperCase().indexOf(selection) > -1)
+                    tr[i].style.display = "";
+
+                if (textValueLastName.toUpperCase().indexOf(selection) > -1)
+                    tr[i].style.display = "";
+            }
+        }
+    }
+}
