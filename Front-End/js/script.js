@@ -225,7 +225,7 @@ function loadContacts() {
                     return;
                 }
 
-                let text = "<table border='1'>"
+                let text = "<table>"
                 for (let i = 0; i < jsonObject.results.length; i++) {
                     ids[i] = jsonObject.results[i].ID
                     text += "<tr id='row" + i + "'>"
