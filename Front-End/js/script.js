@@ -14,7 +14,7 @@ function doLogin() {
     let login = document.getElementById("login-user").value;
     let password = document.getElementById("login-password").value;
 
-    // TODO: Declare md5 hash here
+    let hash = md5(password)
 
     if (!validLoginForm(login, password)) {
         document.getElementById("login-result").innerHTML = "Invalid username or password";
@@ -25,7 +25,7 @@ function doLogin() {
 
     let temp = {
         login : login,
-        password : password, // Remember to replace with hash
+        password : hash,
     };
 
     let jsonPayload = JSON.stringify(temp);
@@ -71,7 +71,7 @@ function doSignup() {
         return;
     }
 
-    // TODO: Declare md5 hash here
+    let hash = md5(password)
 
     document.getElementById("signup-result").innerHTML = "";
 
@@ -79,7 +79,7 @@ function doSignup() {
         firstName : firstName,
         lastName : lastName,
         login : username,
-        password : password, // Remember to replace with hash
+        password : hash,
     };
 
     let jsonPayload = JSON.stringify(temp)
