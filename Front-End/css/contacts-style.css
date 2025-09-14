@@ -16,6 +16,10 @@ h2 {
     width: 15%;
 }
 
+.add-contact-box {
+    margin-top: 50px;
+}
+
 button {
     display: flex;
     justify-content: center;

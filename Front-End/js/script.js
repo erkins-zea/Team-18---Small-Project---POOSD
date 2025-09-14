@@ -153,10 +153,10 @@ function doLogout() {
 
 // This function is probably going to have to be changed quite a bit
 function showTable() {
-    let x = document.getElementById("add-me");
+    let x = document.querySelector(".add-contact-box")
     let contacts = document.getElementById("contacts-table")
     if (x.style.display === "none") {
-        x.style.display = "block";
+        x.style.display = "flex";
         contacts.style.display = "none";
     } 
     else {
