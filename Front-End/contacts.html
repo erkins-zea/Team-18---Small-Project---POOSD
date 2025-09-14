@@ -6,7 +6,7 @@
         <title>Contacts</title>
         <link rel="stylesheet" href="./css/styles.css">
         <link rel="stylesheet" href="./css/contacts-style.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1&icon_names=autorenew,edit_square,logout,person_add,person_remove,search&display=block">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1&icon_names=autorenew,edit_square,logout,person_add,person_remove,save,search&display=block">
         <script src="./js/script.js" defer></script>
     </head>
 
@@ -62,6 +62,9 @@
                             <div class="button-container">
                                 <button id="edit-button0" onclick="editRow(0)">
                                     <i class="material-symbols-outlined">edit_square</i>
+                                </button>
+                                <button id="save-button0" onclick="saveRow(0)" style="display: none;">
+                                    <i class="material-symbols-outlined">save</i>
                                 </button>
                                 <button>
                                     <i class="material-symbols-outlined">person_remove</i>
