@@ -6,7 +6,7 @@
         <title>Contacts</title>
         <link rel="stylesheet" href="./css/styles.css">
         <link rel="stylesheet" href="./css/contacts-style.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1&icon_names=autorenew,edit_square,logout,person_add,person_remove,search&display=block">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1&icon_names=autorenew,edit_square,logout,person_add,person_remove,save,search&display=block">
         <script src="./js/script.js" defer></script>
     </head>
 
@@ -19,15 +19,26 @@
                 <i class="material-symbols-outlined">search</i>
                 <input id="search-text" type="text" name="search" placeholder="Search">
             </div>
-            <button>
+            <button onclick="showTable()">
                 <i class="material-symbols-outlined">person_add</i>
             </button>
-            <button>
+            <button onclick="loadContacts()">
                 <i class="material-symbols-outlined">autorenew</i>
             </button>
             <button>
                 <i class="material-symbols-outlined">logout</i>
             </button>
+        </div>
+
+        <div id="form-box" class="add-contact-box" style="display: none;">
+            <h2>Add Contact</h2>
+            <form id="add-me" class="input-form">
+                <input type="text" id="contact-text-first" placeholder="First Name" name="First Name" required>
+                <input type="text" id="contact-text-last" placeholder="Last Name" name="Last Name" required>
+                <input type="number" id="contact-text-number" placeholder="XXX-XXX-XXXX" name="Phone Number">
+                <input type="email" id="contact-text-email" placeholder="name@email.com" name="Email">
+                <button id="add-contact-button" onclick="addContact()">Add Contact</button>
+            </form>
         </div>
 
         <div class="table-wrapper">
@@ -42,22 +53,26 @@
                     </tr>
                 </thead>
                 <tbody id="tbody">
-                    <tr>
-                        <td>First</td>
-                        <td>Last</td>
-                        <td>FirstLast@something.com</td>
-                        <td>XXX-XXX-XXXX</td>
+                    <tr id="row0">
+                        <td id="first-name0">First</td>
+                        <td id="last-name0">Last</td>
+                        <td id="email0">FirstLast@something.com</td>
+                        <td id="phone0">XXX-XXX-XXXX</td>
                         <td>
                             <div class="button-container">
-                                <button>
+                                <button id="edit-button0" onclick="editRow(0)">
                                     <i class="material-symbols-outlined">edit_square</i>
                                 </button>
-                                <button>
+                                <button id="save-button0" onclick="saveRow(0)" style="display: none;">
+                                    <i class="material-symbols-outlined">save</i>
+                                </button>
+                                <button onclick="deleteRow(0)">
                                     <i class="material-symbols-outlined">person_remove</i>
                                 </button>
                             </div>
                         </td>
                     </tr>
+
                     <tr>
                         <td>First</td>
                         <td>Last</td>

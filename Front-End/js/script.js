@@ -153,10 +153,10 @@ function doLogout() {
 
 // This function is probably going to have to be changed quite a bit
 function showTable() {
-    let x = document.getElementById("add-me");
+    let x = document.querySelector(".add-contact-box")
     let contacts = document.getElementById("contacts-table")
     if (x.style.display === "none") {
-        x.style.display = "block";
+        x.style.display = "flex";
         contacts.style.display = "none";
     } 
     else {
@@ -251,7 +251,7 @@ function loadContacts() {
 
 function editRow(id) {
     document.getElementById("edit-button" + id).style.display = "none";
-    // TODO: Switch to save button here
+    document.getElementById("save-button" + id).style.display = "flex";
 
     let firstNameI = document.getElementById("first-name" + id);
     let lastNameI = document.getElementById("last-name" + id);
@@ -282,7 +282,7 @@ function saveRow(id) {
     document.getElementById("phone" + id).innerHTML = phoneVal;
 
     document.getElementById("edit-button" + id).style.display = "flex";
-    // TODO: Save button stuff again
+    document.getElementById("save-button" + id).style.display = "none";
 
     let temp = {
         phoneNumber: phoneVal,
@@ -293,7 +293,7 @@ function saveRow(id) {
     };
 
     let jsonPayload = JSON.stringify(temp);
-    let url = base + "/UpdateContacts." + extension; // Change path if necessary
+    let url = urlBase + "/UpdateContacts." + extension; // Change path if necessary
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
