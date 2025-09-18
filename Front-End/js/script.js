@@ -172,11 +172,11 @@ function addContact() {
     let phonenumber = document.getElementById("contact-text-number").value;
     let emailaddress = document.getElementById("contact-text-email").value;
 
-    if (!validAddContact(firstname, lastname, phonenumber, emailaddress)) {
+    /*if (!validAddContact(firstname, lastname, phonenumber, emailaddress)) {
         console.log("INVALID FIRST NAME, LAST NAME, PHONE, OR EMAIL SUBMITTED");
         return;
     }
-
+    */
     let temp = {
         firstName : firstname,
         lastName : lastname,
