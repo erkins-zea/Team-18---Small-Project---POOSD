@@ -1,4 +1,4 @@
-const urlBase = "placeholderURL";
+const urlBase = "/api";
 const extension = "php";
 
 let userId = 0;
@@ -36,7 +36,7 @@ function doLogin() {
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
         xhr.onreadystatechange = () => {
-            if (this.readyState == 4 && this.status == 200) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
 
@@ -179,8 +179,8 @@ function addContact() {
     let temp = {
         firstName : firstname,
         lastName : lastname,
-        phoneNumber : phonenumber,
-        emailAddress : emailaddress,
+        phone : phonenumber,
+        email : emailaddress,
         userId : userId,
     }
 
@@ -191,7 +191,7 @@ function addContact() {
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
         xhr.onreadystatechange = () => {
-            if (this.readyState == 4 && this.status == 200) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
                 console.log("Contact has been added");
                 document.getElementById("add-me").reset(); // Clear form input
                 loadContacts(); // Reload contacts
