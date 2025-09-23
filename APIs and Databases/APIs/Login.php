@@ -1,8 +1,5 @@
 
 <?php
-	// API endpoint for user login/authentication
-	// expected JSON input: {"login": string, "password": string}
-	
 	$inData = getRequestInfo();
 	
 	$id = 0;

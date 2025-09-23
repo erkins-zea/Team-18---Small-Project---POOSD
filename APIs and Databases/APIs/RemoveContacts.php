@@ -7,11 +7,6 @@
 	$contactId = $inData["contactId"];
 	$userId = $inData["userId"];
 
-	// DATABASE CONNECTION - UPDATE THESE IF DIFFERENT:
-	// host: localhost
-	// username: TheBeast 
-	// password: WeLoveCOP4331
-	// database: COP4331
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
 	{
@@ -19,13 +14,6 @@
 	} 
 	else
 	{
-		// TABLE AND COLUMN NAMES - UPDATE IF DIFFERENT:
-		// table name: Contacts
-		// columns: ContactID (or ID), UserID
-    
-		// verify with database that these match the actual database schema
-    
-		// only delete contacts that belong to the requesting user
 		$stmt = $conn->prepare("DELETE FROM Contacts WHERE ContactID = ? AND UserID = ?");
 		$stmt->bind_param("ii", $contactId, $userId);
 		$stmt->execute();

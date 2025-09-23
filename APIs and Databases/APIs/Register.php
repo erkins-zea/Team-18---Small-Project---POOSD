@@ -1,7 +1,4 @@
 <?php
-	// API endpoint for user registration/signup
-	// expected JSON input: {"firstName": string, "lastName": string, "login": string, "password": string}
-	
 	$inData = getRequestInfo();
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");

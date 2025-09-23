@@ -1,7 +1,4 @@
 <?php
-	// API endpoint to update/edit existing contacts in the database
-	// expected JSON input: {"id": int, "newFirstName": string, "newLastName": string, "emailAddress": string, "phoneNumber": string}
-	
 	$inData = getRequestInfo();
 	
 	$contactId = $inData["id"];
@@ -10,11 +7,6 @@
 	$emailAddress = $inData["emailAddress"];
 	$phoneNumber = $inData["phoneNumber"];
 
-	// DATABASE CONNECTION - UPDATE THESE IF DIFFERENT:
-	// Host: localhost
-	// Username: TheBeast 
-	// Password: WeLoveCOP4331
-	// Database: COP4331
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
 	{
@@ -22,9 +14,6 @@
 	} 
 	else
 	{
-		// TABLE AND COLUMN NAMES - UPDATE IF DIFFERENT:
-		// Table name: Contacts
-		// Columns: ContactID, FirstName, LastName, EmailAddress, PhoneNumber
 		$stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, EmailAddress=?, PhoneNumber=? WHERE ContactID=?");
 		$stmt->bind_param("ssssi", $newFirstName, $newLastName, $emailAddress, $phoneNumber, $contactId);
 		$stmt->execute();

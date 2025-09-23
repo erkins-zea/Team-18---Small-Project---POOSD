@@ -1,18 +1,10 @@
 <?php
-	// API endpoint to delete contacts from the database
-	// expected JSON input: {"firstName": string, "lastName": string, "userId": int}
-	
 	$inData = getRequestInfo();
 	
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
 	$userId = $inData["userId"];
 
-	// DATABASE CONNECTION - UPDATE THESE IF DIFFERENT:
-	// Host: localhost
-	// Username: TheBeast 
-	// Password: WeLoveCOP4331
-	// Database: COP4331
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
 	{
@@ -20,11 +12,6 @@
 	} 
 	else
 	{
-		// TABLE AND COLUMN NAMES - UPDATE IF DIFFERENT:
-		// Table name: Contacts
-		// Columns: ContactID, UserID, FirstName, LastName
-		
-		// Delete contact by first name, last name, and user ID for security
 		$stmt = $conn->prepare("DELETE FROM Contacts WHERE FirstName=? AND LastName=? AND UserID=?");
 		$stmt->bind_param("ssi", $firstName, $lastName, $userId);
 		$stmt->execute();
