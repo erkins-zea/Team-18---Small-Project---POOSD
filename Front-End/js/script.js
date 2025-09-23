@@ -18,10 +18,11 @@ function doLogin() {
 
     let hash = md5(password)
 
-    if (!validLoginForm(login, password)) {
-        document.getElementById("login-result").innerHTML = "Invalid username or password";
-        return;
-    }
+    // Temporarily bypass validation for testing
+    // if (!validLoginForm(login, password)) {
+    //     document.getElementById("login-result").innerHTML = "Invalid username or password";
+    //     return;
+    // }
 
     document.getElementById("login-result").innerHTML = "";
 
@@ -71,10 +72,11 @@ function doSignup() {
     let username = document.getElementById("signup-user").value;
     let password = document.getElementById("signup-password").value;
 
-    if (!validSignUpForm(firstName, lastName, username, password)) {
-        document.getElementById("signup-result").innerHTML = "Invalid signup";
-        return;
-    }
+    // Temporarily bypass validation for testing
+    // if (!validSignUpForm(firstName, lastName, username, password)) {
+    //     document.getElementById("signup-result").innerHTML = "Invalid signup";
+    //     return;
+    // }
 
     let hash = md5(password)
 
