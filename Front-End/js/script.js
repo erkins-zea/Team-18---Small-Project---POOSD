@@ -1,4 +1,4 @@
-const urlBase = "/api";
+const urlBase = "http://hugoputigna.xyz/APIs and Databases/APIs";
 const extension = "php";
 
 let userId = 0;
@@ -13,6 +13,8 @@ function doLogin() {
 
     let login = document.getElementById("login-user").value;
     let password = document.getElementById("login-password").value;
+    
+    console.log("Attempting login for user:", login);
 
     let hash = md5(password)
 
@@ -30,6 +32,9 @@ function doLogin() {
 
     let jsonPayload = JSON.stringify(temp);
     let url = urlBase + "/Login." + extension;
+    
+    console.log("Login URL:", url);
+    console.log("Login payload:", jsonPayload);
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
