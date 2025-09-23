@@ -1,4 +1,3 @@
-console.log("JS loaded");
 const urlBase = "/api";
 const extension = "php";
 
