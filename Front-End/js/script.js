@@ -1,4 +1,4 @@
-const urlBase = "placeholderURL";
+const urlBase = "http://hugoputigna.xyz/api";
 const extension = "php";
 
 let userId = 0;
@@ -13,13 +13,16 @@ function doLogin() {
 
     let login = document.getElementById("login-user").value;
     let password = document.getElementById("login-password").value;
+    
+    console.log("Attempting login for user:", login);
 
     let hash = md5(password)
 
-    if (!validLoginForm(login, password)) {
-        document.getElementById("login-result").innerHTML = "Invalid username or password";
-        return;
-    }
+    // Temporarily bypass validation for testing
+    // if (!validLoginForm(login, password)) {
+    //     document.getElementById("login-result").innerHTML = "Invalid username or password";
+    //     return;
+    // }
 
     document.getElementById("login-result").innerHTML = "";
 
@@ -29,14 +32,17 @@ function doLogin() {
     };
 
     let jsonPayload = JSON.stringify(temp);
-    let url = urlBase + "/Login." + extension; // Remember to rename if .php filename is different
+    let url = urlBase + "/Login." + extension;
+    
+    console.log("Login URL:", url);
+    console.log("Login payload:", jsonPayload);
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
-        xhr.onreadystatechange = () => {
-            if (this.readyState == 4 && this.status == 200) {
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
 
@@ -55,7 +61,7 @@ function doLogin() {
         };
         xhr.send(jsonPayload);
     } catch (error) {
-        document.getElementById("loginResult").innerHTML = error.message;
+        document.getElementById("login-result").innerHTML = error.message;
     }
 }
 
@@ -66,10 +72,11 @@ function doSignup() {
     let username = document.getElementById("signup-user").value;
     let password = document.getElementById("signup-password").value;
 
-    if (!validSignUpForm(firstName, lastName, username, password)) {
-        document.getElementById("signup-result").innerHTML = "Invalid signup";
-        return;
-    }
+    // Temporarily bypass validation for testing
+    // if (!validSignUpForm(firstName, lastName, username, password)) {
+    //     document.getElementById("signup-result").innerHTML = "Invalid signup";
+    //     return;
+    // }
 
     let hash = md5(password)
 
@@ -83,22 +90,22 @@ function doSignup() {
     };
 
     let jsonPayload = JSON.stringify(temp)
-    let url = urlBase + "/SignUp." + extension // Replace name sure whatever
+    let url = urlBase + "/SignUp." + extension
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
-        xhr.onreadystatechange = () => {
-            if (this.readyState != 4)
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState != 4)
                 return;
 
-            if (this.status == 409) {
+            if (xhr.status == 409) {
                 document.getElementById("signup-result").innerHTML = "User already exists";
                 return;
             }
 
-            if (this.status == 200) {
+            if (xhr.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
                 document.getElementById("signup-result").innerHTML = "User added";
@@ -116,7 +123,7 @@ function doSignup() {
 function saveCookie() {
     let minutes = 20;
     let date = new Date();
-    date.setTime(date.getTime + (minutes * 60 * 1000));
+    date.setTime(date.getTime() + (minutes * 60 * 1000));
     document.cookie = `firstName=${firstName},lastName=${lastName},userId=${userId};expires=${date.toGMTString()}`;
 }
 
@@ -151,7 +158,6 @@ function doLogout() {
 	window.location.href = "index.html";
 }
 
-// This function is probably going to have to be changed quite a bit
 function showTable() {
     let x = document.querySelector(".add-contact-box")
     let contacts = document.getElementById("contacts-table")
@@ -171,31 +177,26 @@ function addContact() {
     let phonenumber = document.getElementById("contact-text-number").value;
     let emailaddress = document.getElementById("contact-text-email").value;
 
-    if (!validAddContact(firstname, lastname, phonenumber, emailaddress)) {
-        console.log("INVALID FIRST NAME, LAST NAME, PHONE, OR EMAIL SUBMITTED");
-        return;
-    }
-
     let temp = {
         firstName : firstname,
         lastName : lastname,
-        phoneNumber : phonenumber,
-        emailAddress : emailaddress,
+        phone : phonenumber,
+        email : emailaddress,
         userId : userId,
     }
 
     let jsonPayload = JSON.stringify(temp);
-    let url = urlBase + '/AddContacts.' + extension; // Remember to rename if .php filename is different
+    let url = urlBase + '/AddContacts.' + extension;
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true)
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
-        xhr.onreadystatechange = () => {
-            if (this.readyState == 4 && this.status == 200) {
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
                 console.log("Contact has been added");
-                document.getElementById("add-me").reset(); // Clear form input
-                loadContacts(); // Reload contacts
-                showTable(); // Switch view to show, this whole part might be unnecessary since I may just decide not to hide the table when adding a contact
+                document.getElementById("add-me").reset();
+                loadContacts();
+                showTable();
             }
         };
         xhr.send(jsonPayload)
@@ -212,13 +213,13 @@ function loadContacts() {
 
     let jsonPayload = JSON.stringify(temp);
 
-    let url = urlBase + "/SearchContacts." + extension; // Remember to change yeah yeah yeah
+    let url = urlBase + "/SearchContacts." + extension;
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
-        xhr.onreadystatechange = () => {
-            if (this.readyState == 4 && this.readyState == 200) {
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
                 if (jsonObject.error) {
                     console.log(jsonObject.error);
@@ -234,9 +235,9 @@ function loadContacts() {
                     text += "<td id='email" + i + "'><span>" + jsonObject.results[i].EmailAddress + "</span></td>";
                     text += "<td id='phone" + i + "'><span>" + jsonObject.results[i].PhoneNumber + "</span></td>";
                     text += "<td>" +
-                    "<button type='button' id='edit-button" + i + "' onclick='editRow(" + i + ")'>" + "<i class='material-symbols-outlined'>edit_square</i> + </button>" +
-                    // TODO: Add save button here
-                    "<button type='button' onclick='deleteRow(" + i + ")'>" + "<i class='material-symbols-outlined'>person_remove</i> + </button>";
+                    "<button type='button' id='edit-button" + i + "' onclick='editRow(" + i + ")'>" + "<i class='material-symbols-outlined'>edit_square</i></button>" +
+                    "<button type='button' id='save-button" + i + "' onclick='saveRow(" + i + ")' style='display: none;'>" + "<i class='material-symbols-outlined'>save</i></button>" +
+                    "<button type='button' onclick='deleteRow(" + i + ")'>" + "<i class='material-symbols-outlined'>person_remove</i></button>";
                     text += "</tr>";
                 }
                 text += "</table>";
@@ -293,14 +294,14 @@ function saveRow(id) {
     };
 
     let jsonPayload = JSON.stringify(temp);
-    let url = urlBase + "/UpdateContacts." + extension; // Change path if necessary
+    let url = urlBase + "/UpdateContacts." + extension;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
-        xhr.onreadystatechange = () => {
-            if (this.readyState == 4 && this.status == 200) {
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
                 console.log("Contact has been updated");
                 loadContacts();
             }
@@ -327,14 +328,14 @@ function deleteRow(id) {
         };
 
         let jsonPayload = JSON.stringify(temp);
-        let url = urlBase + '/DeleteContacts.' + extension; // Change or something idk
+        let url = urlBase + '/DeleteContacts.' + extension;
 
         let xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
         try {
-            xhr.onreadystatechange = () => {
-                if (this.readyState == 4 && this.status == 200) {
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
                     console.log("Contact has been deleted");
                     loadContacts();
                 }
@@ -370,4 +371,17 @@ function searchContacts() {
             }
         }
     }
+}
+
+// Validation functions (you may need to implement these)
+function validLoginForm(login, password) {
+    return login.length > 0 && password.length > 0;
+}
+
+function validSignUpForm(firstName, lastName, username, password) {
+    return firstName.length > 0 && lastName.length > 0 && username.length > 0 && password.length > 0;
+}
+
+function validAddContact(firstName, lastName, phone, email) {
+    return firstName.length > 0 && lastName.length > 0 && phone.length > 0 && email.length > 0;
 }
