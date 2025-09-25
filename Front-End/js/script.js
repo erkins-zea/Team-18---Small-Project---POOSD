@@ -1,4 +1,4 @@
-const urlBase = "http://hugoputigna.xyz/api";
+const urlBase = "https://hugoputigna.xyz/api";
 const extension = "php";
 
 let userId = 0;
