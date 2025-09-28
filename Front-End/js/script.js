@@ -235,9 +235,12 @@ function loadContacts() {
                     text += "<td id='email" + i + "'><span>" + jsonObject.results[i].EmailAddress + "</span></td>";
                     text += "<td id='phone" + i + "'><span>" + jsonObject.results[i].PhoneNumber + "</span></td>";
                     text += "<td>" +
+                    "<div class='button-container'>" +
                     "<button type='button' id='edit-button" + i + "' onclick='editRow(" + i + ")'>" + "<i class='material-symbols-outlined'>edit_square</i></button>" +
                     "<button type='button' id='save-button" + i + "' onclick='saveRow(" + i + ")' style='display: none;'>" + "<i class='material-symbols-outlined'>save</i></button>" +
-                    "<button type='button' onclick='deleteRow(" + i + ")'>" + "<i class='material-symbols-outlined'>person_remove</i></button>";
+                    "<button type='button' onclick='deleteRow(" + i + ")'>" + "<i class='material-symbols-outlined'>person_remove</i></button>" +
+                    "</div>" +
+                    "</td>";
                     text += "</tr>";
                 }
                 text += "</table>";
