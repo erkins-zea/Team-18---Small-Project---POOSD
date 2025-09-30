@@ -52,14 +52,6 @@ table {
     border-spacing: 0 20px;
 }
 
-tbody tr {
-    transition: 0.3s ease;
-}
-
-tbody tr:hover {
-    transform: scale(1.05);
-}
-
 tr th:first-child, tr td:first-child {
     border-radius: 20px 0 0 20px;
 }
@@ -69,7 +61,7 @@ tr th:last-child, tr td:last-child {
 }
 
 th, td {
-    background-color: rgb(71, 46, 94);
+    background-color: white;
     text-align: left;
     width: 400px;
     padding:10px;
@@ -80,4 +72,38 @@ th, td {
     justify-content: left;
     align-items: center;
     gap: 10px;
+}
+
+.material-symbols-outlined {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 1;
+}
+
+#contacts-table th:last-child,
+#contacts-table td:last-child {
+  width: 140px; /* adjust as needed */
+}
+
+.button-container button {
+  width: 36px;
+  height: 30px; /* same as your global button height */
+  padding: 0;
+}
+
+#contacts-table td,
+#contacts-table th {
+  min-height: 44px;
+  vertical-align: middle;
+}
+
+.table-wrapper {
+  contain: layout paint style;
+}
+
+#contacts-table tbody {
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px;
 }
